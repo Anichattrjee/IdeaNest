@@ -72,6 +72,7 @@ export const signIn = async (req, res, next) => {
 
 export const google = async (req, res, next) => {
   const { email, name, googlePhotoUrl } = req.body;
+  console.log(googlePhotoUrl);
   try {
     //check if the user exists or not
     const user = await User.findOne({ email });
