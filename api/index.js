@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 // import User from "./models/user.model.js";
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ const app=express();
 
 //middlewares
 app.use(express.json());
+app.use(cookieParser());
 
 
 

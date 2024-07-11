@@ -61,7 +61,7 @@ export const signIn = async (req, res, next) => {
 
     res
       .status(200)
-      .cookie("access-token", token, {
+      .cookie("access_token", token, {
         httpOnly: true,
       })
       .json({ message: "Sign-In Successful", success: true, rest });
@@ -83,7 +83,7 @@ export const google = async (req, res, next) => {
       const { password, ...rest } = user._doc;
       res
         .status(200)
-        .cookie("access-token", token, {
+        .cookie("access_token", token, {
           httpOnly: true,
         })
         .json({ message: "Sign-In Successful", success: true, rest });
@@ -105,7 +105,7 @@ export const google = async (req, res, next) => {
       const {password, ...rest}=savedNewUser._doc;
       res
         .status(200)
-        .cookie("access-token", token, {
+        .cookie("access_token", token, {
           httpOnly: true,
         })
         .json({ message: "Sign-In Successful", success: true, rest });
