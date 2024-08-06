@@ -54,7 +54,7 @@ export const signIn = async (req, res, next) => {
       return next(errorHandler(400, "Invalid Password"));
     }
 
-    const token = await jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
+    const token = await jwt.sign({ id: validUser._id, isAdmin:validUser.isAdmin }, process.env.JWT_SECRET);
 
     //separarte the password and then send it back
     const { password: pass, ...rest } = validUser._doc;
@@ -79,7 +79,7 @@ export const google = async (req, res, next) => {
 
     //if yes then generate token for the user
     if (user) {
-      const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      const token = await jwt.sign({ id: user._id,isAdmin:user.isAdmin }, process.env.JWT_SECRET);
       const { password, ...rest } = user._doc;
       res
         .status(200)
@@ -101,7 +101,7 @@ export const google = async (req, res, next) => {
       });
 
       const savedNewUser=await newUser.save();
-      const token=await jwt.sign({id:savedNewUser._id},process.env.JWT_SECRET);
+      const token=await jwt.sign({id:savedNewUser._id, idAdmin:savedNewUser.isAdmin},process.env.JWT_SECRET);
       const {password, ...rest}=savedNewUser._doc;
       res
         .status(200)
