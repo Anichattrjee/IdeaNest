@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
 import postRouter from "./routes/post.route.js";
+import commentRouter from "./routes/comment.route.js";
 import cookieParser from "cookie-parser";
 
 
@@ -33,6 +34,7 @@ mongoose.connect(process.env.MONGO_URL)
 app.use("/api/user",userRouter);
 app.use("/api/auth",authRouter);
 app.use("/api/post",postRouter);
+app.use("/api/comment",commentRouter);
 
 
 
