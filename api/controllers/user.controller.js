@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 import bcryptjs from "bcryptjs";
+import mongoose from "mongoose";
 
 export const testController = (req, res) => {
   res.json({ message: "Api is working" });
@@ -129,15 +130,23 @@ export const getUsers = async (req, res, next) => {
 };
 
 export const getOneUser=async(req,res,next)=>{
-  try {
+  try 
+  {
+
+    // if (!mongoose.Types.ObjectId.isValid(req.body.userId)) {
+    //   return res.status(400).json({ success: false, message: 'Invalid user ID.' });
+    // // }
+    // console.log(typeof(req.params.userId));
+    // const mongoUserId =new mongoose.Types.ObjectId();
     const user=await User.findById(req.params.userId);
+    
     if(!user)
     {
       return next(errorHandler(404,"User not found"));
     }
 
     const {password,...rest}=user._doc;
-    res.status(200).json(rest);
+    res.status(200).json({success:true,rest});
   } catch (error) {
     next(error);
   }  
