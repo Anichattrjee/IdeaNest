@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { signOutSuccess } from "../redux/user/userSlice";
 import { useSelector } from "react-redux";
 import { HiDocumentText } from "react-icons/hi";
+import {LiaComments} from "react-icons/lia";
 
 
 function DashSidebar() {
@@ -47,7 +48,7 @@ function DashSidebar() {
             <Sidebar.Item
               active={tab === "profile"}
               icon={HiUser}
-              label={currentUser.rest.isAdmin ? "Admin" :"User"}
+              label={currentUser.rest.isAdmin ? "Admin" : "User"}
               labelColor="dark"
               as="div"
             >
@@ -60,17 +61,33 @@ function DashSidebar() {
                 active={tab == "posts"}
                 icon={HiDocumentText}
                 as="div"
-              >Posts</Sidebar.Item>
+              >
+                Posts
+              </Sidebar.Item>
             </Link>
           )}
 
-{currentUser.rest.isAdmin && (
+          {currentUser.rest.isAdmin && (
             <Link to="/dashboard?tab=users">
               <Sidebar.Item
                 active={tab == "users"}
                 icon={HiOutlineUserGroup}
                 as="div"
-              >Users</Sidebar.Item>
+              >
+                Users
+              </Sidebar.Item>
+            </Link>
+          )}
+
+{currentUser.rest.isAdmin && (
+            <Link to="/dashboard?tab=comments">
+              <Sidebar.Item
+                active={tab == "comments"}
+                icon={LiaComments}
+                as="div"
+              >
+                Comments
+              </Sidebar.Item>
             </Link>
           )}
           <Sidebar.Item
